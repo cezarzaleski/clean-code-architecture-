@@ -1,0 +1,20 @@
+{
+  "name": "clean-code-arq",
+  "version": "1.0.0",
+  "description": "Develop project Clean Code and Clean Architecture in course Rodrigo Branas",
+  "main": "index.js",
+  "scripts": {
+    "tsc:init": "tsc --init",
+    "build": "tsc",
+    "test": "tsc && jest dist/"
+  },
+  "author": "Cezar Gabriel Heinen Zaleski",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.2",
+    "jest": "^27.2.1"
+  }
+}
