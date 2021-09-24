@@ -9,9 +9,14 @@ test('Should cpf is valid', () => {
 
 })
 
-test('Should throw exception cpf invalid', () => {
+test('Should throw exception when the first digit the cpf invalid', () => {
   // then
   expect(() => Cpf.create('010.233.120-99')).toThrow(new Error("cpf invalid"));
+})
+
+test('Should throw exception when the second digit the cpf invalid', () => {
+  // then
+  expect(() => Cpf.create('010.233.120-09')).toThrow(new Error("cpf invalid"));
 })
 
 test('Should verify digit the cpf', () => {
