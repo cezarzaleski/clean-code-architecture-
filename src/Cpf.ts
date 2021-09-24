@@ -13,33 +13,29 @@ export class Cpf {
     return this.cpf
   }
 
-  // ruim pq não posso expor para testar =)
   private validateFirstDigit(value: string) {
     const base = value.substr(0,9);
     const firstDigit = +value.substr(9,1);
-    let count = 10;
-    let sum = 0;
-    base.split('').forEach((num) => {
-      sum += +num * count
-      count--;
-    });
-    const restDivision = sum % 11;
-    const calculateFirstDigit = restDivision < 2 ? 0 : 11 - restDivision;
+    const calculateFirstDigit = this.calculateDigit(base);
     if (calculateFirstDigit != firstDigit) throw new Error("cpf invalid");
   }
 
   private validateSecondDigit(value: string) {
     const base = value.substr(0,10);
     const secondDigit = +value.substr(10,1);
-    let count = 11;
+    const calculateSecondDigit = this.calculateDigit(base);
+    if (calculateSecondDigit != secondDigit) throw new Error("cpf invalid");
+  }
+
+  private calculateDigit(base: string) {
     let sum = 0;
+    let count = base.length + 1;
     base.split('').forEach((num) => {
       sum += +num * count
       count--;
     });
     const restDivision = sum % 11;
-    const calculateSecondDigit = restDivision < 2 ? 0 : 11 - restDivision;
-    if (calculateSecondDigit != secondDigit) throw new Error("cpf invalid");
+    return restDivision < 2 ? 0 : 11 - restDivision;
   }
 
   public static create(cpf: string) {
