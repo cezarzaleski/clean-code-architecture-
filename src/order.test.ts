@@ -32,7 +32,9 @@ test('Should order with 3 itens', () => {
 
 test('Should order with coupon', () => {
   //given/when
-  const order = new Order(description, price, amount, cpf, 10)
+  const coupon = 10;
+  const order = new Order(description, price, amount, cpf, coupon)
   //then
-  expect(order.total).toEqual(price*amount)
+  const total = price*amount;
+  expect(order.total).toEqual(total-(total*coupon))
 })
