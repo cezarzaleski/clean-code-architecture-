@@ -39,6 +39,7 @@ export class Order {
   }
 
   get total(): number {
-    return this.price * this.amount;
+    const total = this.price * this.amount;
+    return total - (total*this.coupon);
   }
 }
