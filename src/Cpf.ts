@@ -1,3 +1,4 @@
+import { InvalidCpfError } from './InvalidCpfError';
 
 
 export class Cpf {
@@ -17,14 +18,14 @@ export class Cpf {
     const base = value.substr(0,9);
     const firstDigit = +value.substr(9,1);
     const calculateFirstDigit = this.calculateDigit(base);
-    if (calculateFirstDigit != firstDigit) throw new Error("cpf invalid");
+    if (calculateFirstDigit != firstDigit) throw new InvalidCpfError(value);
   }
 
   private validateSecondDigit(value: string) {
     const base = value.substr(0,10);
     const secondDigit = +value.substr(10,1);
     const calculateSecondDigit = this.calculateDigit(base);
-    if (calculateSecondDigit != secondDigit) throw new Error("cpf invalid");
+    if (calculateSecondDigit != secondDigit) throw new InvalidCpfError(value);
   }
 
   private calculateDigit(base: string) {
