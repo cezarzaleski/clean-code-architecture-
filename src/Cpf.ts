@@ -1,10 +1,12 @@
 import { InvalidCpfError } from './InvalidCpfError';
+import { EmptyParamError } from './empty-param';
 
 
 export class Cpf {
   private readonly cpf: string;
 
   private constructor(cpf: string) {
+    if (!cpf) throw new EmptyParamError('cpf')
     this.validateFirstDigit(cpf);
     this.validateSecondDigit(cpf);
     this.cpf = cpf;

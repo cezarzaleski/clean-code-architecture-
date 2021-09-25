@@ -1,5 +1,6 @@
 import { Cpf } from './Cpf';
 import { InvalidCpfError } from './InvalidCpfError';
+import { EmptyParamError } from './empty-param';
 
 
 test('Should cpf is valid', () => {
@@ -31,5 +32,12 @@ test('Should verify digit the cpf', () => {
   const cpf = Cpf.create(cpfNumber)
   // then
   expect(cpf.value).toEqual(cpfNumber.replace(/[^0-9]/g, ''))
+})
+
+test('Should throw exception when cpf lenght < 10', () => {
+  //given
+  const cpf = ''
+  // then
+  expect(() => Cpf.create(cpf)).toThrow(new EmptyParamError('cpf'));
 })
 
