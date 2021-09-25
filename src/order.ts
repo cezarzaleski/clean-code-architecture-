@@ -1,15 +1,18 @@
+import { Cpf } from './cpf';
 
 
 export class Order {
-  private _description: string;
-  private _price: number;
-  private _amount: number;
+  private readonly _description: string;
+  private readonly _price: number;
+  private readonly _amount: number;
+  private readonly _cpf: Cpf;
 
 
-  constructor(description: string, price: number, amount: number) {
+  constructor(description: string, price: number, amount: number, cpf: string) {
     this._description = description;
     this._price = price;
     this._amount = amount;
+    this._cpf = Cpf.create(cpf);
   }
 
 
@@ -23,5 +26,9 @@ export class Order {
 
   get amount(): number {
     return this._amount;
+  }
+
+  get cpf(): Cpf {
+    return this._cpf;
   }
 }
