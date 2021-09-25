@@ -3,17 +3,13 @@ import { EmptyParamError } from './empty-param';
 
 
 export class Cpf {
-  private readonly cpf: string;
+  value: string;
 
-  private constructor(cpf: string) {
-    if (!cpf) throw new EmptyParamError('cpf')
-    this.validateFirstDigit(cpf);
-    this.validateSecondDigit(cpf);
-    this.cpf = cpf;
-  }
-
-  get value (): string {
-    return this.cpf
+  private constructor(value: string) {
+    if (!value) throw new EmptyParamError('cpf')
+    this.validateFirstDigit(value);
+    this.validateSecondDigit(value);
+    this.value = value;
   }
 
   private validateFirstDigit(value: string) {
@@ -41,7 +37,7 @@ export class Cpf {
     return restDivision < 2 ? 0 : 11 - restDivision;
   }
 
-  public static create(cpf: string) {
-    return new Cpf(cpf.replace(/[^0-9]/g, ''));
+  public static create(value: string) {
+    return new Cpf(value.replace(/[^0-9]/g, ''));
   }
 }
