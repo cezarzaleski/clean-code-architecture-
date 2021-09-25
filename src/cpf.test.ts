@@ -1,5 +1,5 @@
-import { Cpf } from './Cpf';
-import { InvalidCpfError } from './InvalidCpfError';
+import { Cpf } from './cpf';
+import { InvalidCpfError } from './invalid-cpf-error';
 import { EmptyParamError } from './empty-param';
 
 

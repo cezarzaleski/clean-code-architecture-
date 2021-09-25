@@ -1,6 +1,6 @@
 
 
-export default class Order {
+export class Order {
   private _description: string;
   private _price: number;
   private _amount: number;

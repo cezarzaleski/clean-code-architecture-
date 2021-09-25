@@ -1,4 +1,4 @@
-import { InvalidCpfError } from './InvalidCpfError';
+import { InvalidCpfError } from './invalid-cpf-error';
 import { EmptyParamError } from './empty-param';
 
 

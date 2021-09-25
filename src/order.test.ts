@@ -1,4 +1,4 @@
-import Order from './Order';
+import { Order } from './order';
 
 
 test('Should order with 3 itens', () => {
