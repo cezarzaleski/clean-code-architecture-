@@ -3,17 +3,13 @@ import { EmptyParamError } from './empty-param';
 
 
 export class Cpf {
-  private readonly cpf: string;
+  readonly value: string;
 
-  private constructor(cpf: string) {
-    if (!cpf) throw new EmptyParamError('cpf')
-    this.validateFirstDigit(cpf);
-    this.validateSecondDigit(cpf);
-    this.cpf = cpf;
-  }
-
-  get value (): string {
-    return this.cpf
+  private constructor(value: string) {
+    if (!value) throw new EmptyParamError('cpf')
+    this.validateFirstDigit(value);
+    this.validateSecondDigit(value);
+    this.value = value;
   }
 
   private validateFirstDigit(value: string) {
