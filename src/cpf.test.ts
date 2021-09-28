@@ -41,3 +41,10 @@ test('Should throw exception when cpf lenght < 10', () => {
   expect(() => Cpf.create(cpf)).toThrow(new EmptyParamError('cpf'));
 })
 
+test('Should throw exception when number equal', () => {
+  //given
+  const cpf = '111.111.111-11'
+  // then
+  expect(() => Cpf.create(cpf)).toThrow(new InvalidCpfError(cpf.replace(/[^0-9]/g, '')));
+})
+
