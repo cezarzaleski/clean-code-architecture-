@@ -1,8 +1,8 @@
-import { InvalidCpfError } from './invalid-cpf-error';
-import { EmptyParamError } from './empty-param';
+import InvalidCpfError from './invalid-cpf-error';
+import EmptyParamError from './empty-param';
 
 
-export class Cpf {
+export default class Cpf {
   readonly value: string;
 
   private constructor(value: string) {
@@ -24,7 +24,6 @@ export class Cpf {
   private validateSecondDigit(value: string) {
     const base = value.substr(0,10);
     const secondDigit = +value.substr(10,1);
-    const baseArray = base.split('');
     const calculateSecondDigit = this.calculateDigit(base);
     if (calculateSecondDigit != secondDigit) throw new InvalidCpfError(value);
   }
