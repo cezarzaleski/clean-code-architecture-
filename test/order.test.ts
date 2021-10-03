@@ -31,7 +31,17 @@ test('Should order with coupon', () => {
   const order = new Order(cpf)
   order.addItem(new Item(1, 'suplement', 'Omega 3', 70), 1)
   order.addItem(new Item(2, 'suplement', 'Spirulina', 90), 1)
-  order.addCoupon(new Coupon('DISCOUNT20', 20))
+  order.addCoupon(new Coupon('DISCOUNT20', 20, new Date()))
   //then
   expect(order.total).toEqual(128)
+})
+
+test('Should don`t order with coupon expired', () => {
+  //given/when
+  const order = new Order(cpf)
+  order.addItem(new Item(1, 'suplement', 'Omega 3', 70), 1)
+  order.addItem(new Item(2, 'suplement', 'Spirulina', 90), 1)
+  order.addCoupon(new Coupon('DISCOUNT20', 20, new Date('2021-09-30')))
+  //then
+  expect(order.total).toEqual(160)
 })

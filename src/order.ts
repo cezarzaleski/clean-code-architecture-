@@ -20,7 +20,8 @@ export default class Order {
   }
 
   addCoupon(coupon: Coupon) {
-    this.coupon = coupon
+    const now = new Date()
+    if (coupon.effectiveDate >= now) this.coupon = coupon
   }
 
   get total(): number {
