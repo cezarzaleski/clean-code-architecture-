@@ -1,8 +1,9 @@
-import Order from '../src/order';
-import Item from '../src/item';
-import InvalidCpfError from '../src/invalid-cpf-error';
-import Coupon from "../src/coupon";
-import Dimension from '../src/dimension';
+import Dimension from '../../src/domain/entity/dimension';
+import Order from '../../src/domain/entity/order';
+import InvalidCpfError from '../../src/domain/exception/invalid-cpf-error';
+import Item from '../../src/domain/entity/item';
+import Coupon from '../../src/domain/entity/coupon';
+
 
 const cpf = '01023312000';
 const dimensionDefault = new Dimension(20, 15, 10);

@@ -1,5 +1,5 @@
-import InvalidCpfError from './invalid-cpf-error';
-import EmptyParamError from './empty-param';
+import InvalidCpfError from '../exception/invalid-cpf-error';
+import EmptyParamError from '../exception/empty-param';
 
 
 export default class Cpf {

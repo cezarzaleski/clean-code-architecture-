@@ -1,4 +1,4 @@
-import OrderItem from "../src/order-item";
+import OrderItem from '../../src/domain/entity/order-item';
 
 
 test('Should create new item from order', () => {

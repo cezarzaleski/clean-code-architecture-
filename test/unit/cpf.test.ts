@@ -1,6 +1,6 @@
-import Cpf from '../src/cpf';
-import InvalidCpfError from '../src/invalid-cpf-error';
-import EmptyParamError from '../src/empty-param';
+import Cpf from '../../src/domain/entity/cpf';
+import InvalidCpfError from '../../src/domain/exception/invalid-cpf-error';
+import EmptyParamError from '../../src/domain/exception/empty-param';
 
 
 test('Should cpf is valid', () => {

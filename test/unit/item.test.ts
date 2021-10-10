@@ -1,5 +1,5 @@
-import Item from '../src/item';
-import Dimension from '../src/dimension';
+import Item from '../../src/domain/entity/item';
+import Dimension from '../../src/domain/entity/dimension';
 
 const dimensionDefault = new Dimension(0, 0, 0)
 
