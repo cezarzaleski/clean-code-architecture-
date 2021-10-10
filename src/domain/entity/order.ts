@@ -2,6 +2,7 @@ import Cpf from './cpf';
 import Coupon from "./coupon";
 import OrderItem from "./order-item";
 import Item from "./item";
+import OrderCode from './order-code';
 
 
 export default class Order {
@@ -9,12 +10,14 @@ export default class Order {
   private coupon: Coupon | undefined;
   private readonly orderItems: OrderItem[]
   private freight: number
+  private code: OrderCode
 
 
-  constructor(cpf: string) {
+  constructor(cpf: string, readonly issueDate: Date = new Date(), sequence: number = 1) {
     this.cpf = Cpf.create(cpf);
     this.orderItems = []
     this.freight = 0;
+    this.code = new OrderCode(issueDate, sequence);
   }
 
   addItem(item: Item, quantity: number) {
@@ -23,8 +26,7 @@ export default class Order {
   }
 
   addCoupon(coupon: Coupon) {
-    const now = new Date()
-    if (coupon.effectiveDate >= now) this.coupon = coupon
+    if (coupon.effectiveDate >= this.issueDate) this.coupon = coupon
   }
 
   get total(): number {
