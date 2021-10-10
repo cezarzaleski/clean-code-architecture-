@@ -6,7 +6,7 @@ export default class Item {
     readonly category: string,
     readonly description: string,
     readonly price: number,
-    readonly dimension: Dimension,
+    readonly dimension: Dimension = new Dimension(0,0,0),
     readonly weight: number = 0
   ) {
   }
