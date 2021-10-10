@@ -5,17 +5,20 @@ import Item from "./item";
 
 
 export default class Order {
-  readonly cpf: Cpf;
-  coupon: Coupon | undefined;
-  readonly orderItems: OrderItem[]
+  private readonly cpf: Cpf;
+  private coupon: Coupon | undefined;
+  private readonly orderItems: OrderItem[]
+  private freight: number
 
 
   constructor(cpf: string) {
     this.cpf = Cpf.create(cpf);
     this.orderItems = []
+    this.freight = 0;
   }
 
   addItem(item: Item, quantity: number) {
+    this.freight += item.freight * quantity;
     this.orderItems.push(new OrderItem(item.id, item.price, quantity))
   }
 
@@ -30,5 +33,9 @@ export default class Order {
     }, 0)
     if (this.coupon) total -= (total * this.coupon.percentage) / 100
     return total
+  }
+
+  getFreight () {
+    return this.freight;
   }
 }

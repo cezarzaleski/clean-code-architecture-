@@ -6,7 +6,7 @@ import Dimension from '../src/dimension';
 
 const cpf = '01023312000';
 const dimensionDefault = new Dimension(20, 15, 10);
-const weightDefault = 10;
+const weightDefault = 1;
 
 test('Should throw exception cpf first digit invalid', () => {
   expect(() => new Order('01023312099'))
@@ -46,7 +46,7 @@ test('Should order with coupon', () => {
     new Item(2, 'suplement', 'Spirulina', 90, dimensionDefault, weightDefault),
     1
   )
-  order.addCoupon(new Coupon('DISCOUNT20', 20, new Date()))
+  order.addCoupon(new Coupon('DISCOUNT20', 20, new Date('2030-11-30')))
   //then
   expect(order.total).toEqual(128)
 })
@@ -67,17 +67,13 @@ test('Should don`t order with coupon expired', () => {
   expect(order.total).toEqual(160)
 })
 
-test('Should calculate shipping based on item dimensions', () => {
+test('Should create order with freight', () => {
   //given/when
   const order = new Order(cpf)
-  order.addItem(
-    new Item(1, 'instrument', 'Camera', 70, dimensionDefault, weightDefault),
-    1
-  )
-  order.addItem(
-    new Item(2, 'suplement', 'Spirulina', 90, dimensionDefault, weightDefault),
-    1
-  )
+  order.addItem(new Item(1, "Instrumentos Musicais", "Guitarra", 1000, new Dimension(100, 30, 10), 3), 1);
+  order.addItem(new Item(2, "Instrumentos Musicais", "Amplificador", 5000, new Dimension(100, 50, 50), 20), 1);
+  order.addItem(new Item(3, "Instrumentos Musicais", "Cabo", 30, new Dimension(10, 10, 10), 0.9), 3);
   //then
-  expect(order.total).toEqual(160)
+  const freight = order.getFreight();
+  expect(freight).toBe(260)
 })
