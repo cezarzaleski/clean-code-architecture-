@@ -26,7 +26,7 @@ export default class Order {
   }
 
   addCoupon(coupon: Coupon) {
-    if (coupon.effectiveDate >= this.issueDate) this.coupon = coupon
+    if (!coupon.isExpired(this.issueDate)) this.coupon = coupon
   }
 
   get total(): number {

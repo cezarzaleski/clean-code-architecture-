@@ -18,7 +18,6 @@ test('Should simulate freight order', async () => {
   const placeOrder = new SimulateFreightOrder(new ItemRepositoryMemory())
   //then
   const output = await placeOrder.execute(items)
-  console.log(output)
   expect(output.freight).toBe(30)
 
 })
