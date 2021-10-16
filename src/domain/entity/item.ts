@@ -14,9 +14,4 @@ export default class Item {
   get density(): number {
     return this.weight /this.dimension.cubage
   }
-
-  get freight(): number {
-    const freight = 1000 * this.dimension.cubage * (this.density/100);
-    return (freight < 10) ? 10 : freight;
-  }
 }

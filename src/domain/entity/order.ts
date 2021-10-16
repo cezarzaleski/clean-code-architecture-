@@ -20,8 +20,8 @@ export default class Order {
     this.code = new OrderCode(issueDate, sequence);
   }
 
-  addItem(item: Item, quantity: number) {
-    this.freight += item.freight * quantity;
+  addItem(item: Item, quantity: number, freight: number) {
+    this.freight += freight;
     this.orderItems.push(new OrderItem(item.id, item.price, quantity))
   }
 

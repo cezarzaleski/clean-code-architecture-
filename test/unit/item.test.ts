@@ -1,5 +1,6 @@
 import Item from '../../src/domain/entity/item';
 import Dimension from '../../src/domain/entity/dimension';
+import FreightCalculator from '../../src/domain/service/freight-calculator';
 
 const dimensionDefault = new Dimension(0, 0, 0)
 
@@ -25,14 +26,14 @@ test("Should create a item and calculate the density", () => {
 test("Should create a item and calculate the freight", () => {
   const dimension = new Dimension(100, 30, 10)
   const item = new Item(1, "Istrumentos Musicais", "Guitarra", 1000, dimension, 3)
-  const freight = item.freight;
+  const freight = FreightCalculator.calculate(item);
   expect(freight).toBe(30)
 })
 
 test("Should create a item and calculate the minius freight", () => {
   const dimension = new Dimension(10, 10, 10)
   const item = new Item(1, "Istrumentos Musicais", "Guitarra", 1000, dimension, 0.9)
-  const freight = item.freight;
+  const freight = FreightCalculator.calculate(item);
   expect(freight).toBe(10)
 })
 
