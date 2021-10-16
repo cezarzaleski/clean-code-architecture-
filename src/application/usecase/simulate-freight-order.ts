@@ -1,20 +1,19 @@
 import ItemRepository from '../../domain/repository/item-repository';
-import PlaceOrderInput from '../dto/place-order-input';
-import Order from '../../domain/entity/order';
 import FreightCalculator from '../../domain/service/freight-calculator';
+import SimulateFreightInput from '../dto/simulate-freight-input';
 
 export default class SimulateFreightOrder {
 
   constructor(private readonly itemRepository: ItemRepository) {}
 
-  async execute(input: PlaceOrderInput): Promise<any> {
-    const order = new Order(input.cpf)
-    for (const orderItem of input.orderItems) {
-      const item = await this.itemRepository.findById(orderItem.idItem)
-      order.addItem(item, orderItem.quantity, FreightCalculator.calculate(item))
+  async execute(input: SimulateFreightInput): Promise<any> {
+    let freight = 0;
+    for (const itemInput of input.items) {
+      const item = await this.itemRepository.findById(itemInput.idItem);
+      freight += FreightCalculator.calculate(item) * itemInput.quantity;
     }
     return {
-      freight: order.getFreight()
+      freight: freight
     }
 
   }

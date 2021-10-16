@@ -1,13 +1,12 @@
-import PlaceOrderInput from '../../src/application/dto/place-order-input';
+import SimulateFreightInput from '../../src/application/dto/simulate-freight-input';
 import ItemRepositoryMemory from '../../src/infra/repository/memory/item-repository-memory';
 import SimulateFreightOrder from '../../src/application/usecase/simulate-freight-order';
 
 
 test('Should simulate freight order', async () => {
   //given/when
-  const items: PlaceOrderInput = {
-    cpf: '847.903.332-05',
-    orderItems: [
+  const items: SimulateFreightInput = {
+    items: [
       {
         idItem: 4,
         quantity: 1
