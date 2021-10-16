@@ -13,7 +13,7 @@ export default class Order {
   private code: OrderCode
 
 
-  constructor(cpf: string, readonly issueDate: Date = new Date(), sequence: number = 1) {
+  constructor(cpf: string, readonly issueDate: Date = new Date(), readonly sequence: number = 1) {
     this.cpf = Cpf.create(cpf);
     this.orderItems = []
     this.freight = 0;
@@ -39,5 +39,21 @@ export default class Order {
 
   getFreight () {
     return this.freight;
+  }
+
+  getCode () {
+    return this.code;
+  }
+
+  getCpf () {
+    return this.cpf;
+  }
+
+  getOrderItems() {
+    return this.orderItems
+  }
+
+  getCoupon() {
+    return this.coupon
   }
 }

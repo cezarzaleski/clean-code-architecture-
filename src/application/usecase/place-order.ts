@@ -1,5 +1,5 @@
-import ItemRepository from '../../domain/repository/ItemRepository';
-import OrderRepository from '../../domain/repository/OrderRepository';
+import ItemRepository from '../../domain/repository/item-repository';
+import OrderRepository from '../../domain/repository/order-repository';
 import PlaceOrderInput from '../../application/dto/place-order-input';
 import Order from '../..//domain/entity/order';
 

@@ -12,6 +12,7 @@
   "author": "Cezar Gabriel Heinen Zaleski",
   "license": "ISC",
   "dependencies": {
+    "pg-promise": "^10.11.0",
     "typescript": "^4.4.3"
   },
   "devDependencies": {

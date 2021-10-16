@@ -1,5 +1,5 @@
 import Item from '../../../domain/entity/item';
-import ItemRepository from '../../../domain/repository/ItemRepository';
+import ItemRepository from '../../../domain/repository/item-repository';
 import Dimension from '../../../domain/entity/dimension';
 
 

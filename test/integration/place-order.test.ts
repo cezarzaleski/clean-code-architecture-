@@ -1,8 +1,15 @@
 import PlaceOrder from '../../src/application/usecase/place-order';
 import PlaceOrderInput from '../../src/application/dto/place-order-input';
-import ItemRepositoryMemory from '../../src/infra/repository/memory/item-repository-memory';
-import OrderRepositoryMemory from '../../src/infra/repository/memory/order-repository-memory';
+import ItemRepositoryDatabase from '../../src/infra/repository/database/item-repository-database';
+import OrderRepositoryDatabase from '../../src/infra/repository/database/order-repository-database';
+import DatabaseConnection from '../../src/infra/database/database-connection';
+import DatabaseConnectionAdapter from '../../src/infra/database/databaseconnection-adapter';
 
+let databaseConnection: DatabaseConnection
+
+beforeAll(() => {
+  databaseConnection = new DatabaseConnectionAdapter()
+})
 
 test('Should create place order', async () => {
   //given/when
@@ -26,7 +33,7 @@ test('Should create place order', async () => {
   }
 
 
-  const placeOrder = new PlaceOrder(new ItemRepositoryMemory(), new OrderRepositoryMemory())
+  const placeOrder = new PlaceOrder(new ItemRepositoryDatabase(databaseConnection), new OrderRepositoryDatabase(databaseConnection))
   //then
   const output = await placeOrder.execute(items)
   expect(output.total).toBe(6090)

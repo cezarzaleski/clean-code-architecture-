@@ -1,4 +1,4 @@
-import ItemRepository from '../../domain/repository/ItemRepository';
+import ItemRepository from '../../domain/repository/item-repository';
 import PlaceOrderInput from '../dto/place-order-input';
 import Order from '../../domain/entity/order';
 
