@@ -15,4 +15,8 @@ export default class OrderRepositoryMemory implements OrderRepository {
   findByCode(code: string): Promise<any> {
     return Promise.resolve(undefined);
   }
+
+  findAll(): Promise<Order[]> {
+    return Promise.resolve([]);
+  }
 }

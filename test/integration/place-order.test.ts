@@ -11,6 +11,11 @@ beforeAll(() => {
   databaseConnection = new DatabaseConnectionAdapter()
 })
 
+afterAll(async () => {
+  await databaseConnection.query("delete from ccca.order_item", [])
+  await databaseConnection.query("delete from ccca.order", [])
+})
+
 test('Should create place order', async () => {
   //given/when
   const items: PlaceOrderInput = {
