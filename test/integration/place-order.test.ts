@@ -1,14 +1,15 @@
 import PlaceOrder from '../../src/application/usecase/place-order';
 import PlaceOrderInput from '../../src/application/dto/place-order-input';
-import ItemRepositoryDatabase from '../../src/infra/repository/database/item-repository-database';
-import OrderRepositoryDatabase from '../../src/infra/repository/database/order-repository-database';
 import DatabaseConnection from '../../src/infra/database/database-connection';
 import DatabaseConnectionAdapter from '../../src/infra/database/databaseconnection-adapter';
+import DatabaseRepositoryFactory from '../../src/infra/factory/database-repository-factory';
 
 let databaseConnection: DatabaseConnection
+let placeOrder: PlaceOrder
 
 beforeAll(() => {
   databaseConnection = new DatabaseConnectionAdapter()
+  placeOrder = new PlaceOrder(new DatabaseRepositoryFactory(databaseConnection))
 })
 
 afterAll(async () => {
@@ -18,9 +19,9 @@ afterAll(async () => {
 
 test('Should create place order', async () => {
   //given/when
-  const items: PlaceOrderInput = {
-    cpf: '847.903.332-05',
-    orderItems: [
+  const items = new PlaceOrderInput(
+    '847.903.332-05',
+    [
       {
         idItem: 1,
         quantity: 1
@@ -33,12 +34,13 @@ test('Should create place order', async () => {
         idItem: 3,
         quantity: 3
       }
-    ]
+    ],
+    new Date(),
+    "VALE20"
+  )
 
-  }
 
 
-  const placeOrder = new PlaceOrder(new ItemRepositoryDatabase(databaseConnection), new OrderRepositoryDatabase(databaseConnection))
   //then
   const output = await placeOrder.execute(items)
   expect(output.total).toBe(6090)

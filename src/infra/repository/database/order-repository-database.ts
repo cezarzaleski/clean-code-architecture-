@@ -11,6 +11,11 @@ export default class OrderRepositoryDatabase implements OrderRepository {
   constructor(readonly databaseConnection: DatabaseConnection) {
   }
 
+  async count(): Promise<number> {
+    const [data] = await this.databaseConnection.query('select count(1)::int from ccca.order', [])
+    return data.count
+  }
+
   async findByCode(code: string): Promise<any> {
     const orderDataItens = await this.databaseConnection.query("select o.*, oi.id_item, i.category, i.description, oi.price," +
       " i.width, i.height, i.length, i.weight, oi.quantity from ccca.order o " +
